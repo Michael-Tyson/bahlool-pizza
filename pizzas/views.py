@@ -14,7 +14,7 @@ def pizzas(request):
     """Show all topics"""
     pizzay= Pizza.objects.all()
     context={"pizza":pizzay}
-    return render(request,"pizza.html",context)
+    return render(request,"pizzas/pizza.html",context)
 def pizza(request,pizza_id):
     """show a single Pizza and all its toppings"""
     pizza=Pizza.objects.get(id=pizza_id)#gets one argument of id

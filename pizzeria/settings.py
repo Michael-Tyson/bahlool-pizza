@@ -40,8 +40,10 @@ INSTALLED_APPS = [
     #my apps:
     'pizzas',
     'usersi',
+    'bootstrap3'
+    
     #thid party app
-    'bootstrap3',
+    
     
     
     
@@ -63,6 +65,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [BASE_DIR,"pizzas/templates/pizzas"],
+        
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -130,7 +133,7 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATICFILES_DIRS=[
-    BASE_DIR,"static"
+    BASE_DIR,"static",
     ]
 LOGIN_URL="users:login"
 #settings for django-bootstrap3
@@ -138,6 +141,7 @@ BOOTSTRAP3={
     'include_jquerry':True,
 
 }
+import os
 #heroku settings
 if os.getcwd() == '/app':
     import dj_database_url

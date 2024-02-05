@@ -1,0 +1,16 @@
+{% extends "pizzas/base.html" %}
+{% load bootstrap3 %}
+{% block header %}
+  <h2>Add a new Topping</h2>
+{% endblock header %}
+{% block content %}
+<title>new_topping</title>
+  <button><a href="{% url 'pizzas:pizza' pizzo.id %}">{{pizzo}}</a></button>
+  <form action="{% url 'pizzas:new_topping' pizzo.id %}" method="post" class="form">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    {% buttons %}
+    <button name="submit" class="btn btn-primary">Add Topping</button>
+    {% endbuttons %}
+  </form>
+{% endblock content %}

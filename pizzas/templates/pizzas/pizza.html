@@ -1,0 +1,24 @@
+{% extends "pizzas/base.html" %}
+{% load bootstrap3 %}
+{% block header %}
+  <h1>Pizzas</h1>
+{% endblock header %}
+{% block content %}
+<title>Pizza List</title>
+  <ul>
+    {% for pizzi in pizza %}
+      <h3>
+        <a href="{% url 'pizzas:pizza' pizzi.id %}">{{pizzi}}</a>
+      </h3>
+    {% empty %}
+      <li> No pizza have been added yet</li>
+    {% endfor %}
+  </ul>
+  
+  {% buttons %}
+  
+    <button >
+      <a href="{% url 'pizzas:new_pizza' %}">Add a new  pizza</a>
+    </button>
+  {% endbuttons %}
+{% endblock content %}

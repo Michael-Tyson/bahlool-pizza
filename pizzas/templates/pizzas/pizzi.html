@@ -1,0 +1,29 @@
+{% extends "pizzas/base.html" %}
+{% block header %}
+  <h2>{{ pizza }}</h2>
+{% endblock header %}
+{% block content %}
+<title>{{pizza}}</title>
+  <p>Toppings:</p>
+  <p>
+    <a href="{% url 'pizzas:new_topping' pizza.id %}">Add a new Topping</a>
+  </p>
+  {% for toppingi in topping %}
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3>
+          <small>
+            <a href="{% url 'pizzas:edit_topping' toppingi.id %}">Edit topping</a>
+          </small>
+        </h3>
+      </div>
+      <div class="panel-body">
+        <h2>{{ toppingi.name|linebreaks }}</h2>
+      </div>
+    </div>
+    {% empty %}
+    <li>There are no toppings available for this Pizzza</li>
+    {% endfor %}
+  
+  
+{% endblock content %}

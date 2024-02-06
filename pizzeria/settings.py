@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-
+import cloudinary_storage
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -40,7 +40,9 @@ INSTALLED_APPS = [
     #my apps:
     'pizzas',
     'usersi',
-    'bootstrap3'
+    'bootstrap3',
+    'cloudinary',
+    'cloudinary_storage',
     
     #thid party app
     
@@ -131,14 +133,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATICFILES_DIRS=[
-    BASE_DIR,"static",
+    BASE_DIR/"static",
     ]
 LOGIN_URL="users:login"
 #settings for django-bootstrap3
@@ -149,19 +151,23 @@ BOOTSTRAP3={
 import django_heroku
 import dj_database_url
 
-
 #heroku settings
-if os.getcwd() == '/app':
-    import dj_database_url
-    DATABASES ={
-        'default': dj_database_url.config(default='postgres://localhost')
+DATABASES ={
+    'default': dj_database_url.config(default='postgres://localhost')
         }
     #Honor the 'X-fowarded-proto' header for request.is_secure().
-    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO','http')
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO','http')
     #allow all host headers.
-    ALLOWED_HOSTS =['*']
+ALLOWED_HOSTS =['*']
     #STATIC ASST CONFIGURATION
-    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-    STATIC_ROOT=os.path.join(BASE_DIR,'staticfiles')
-    STATICFILES_DIRS=(OS.PATH.JOIN(BASE_DIR,'static'),)
-    django_heroku.settings(locals())
+STATIC_ROOT = BASE_DIR / "staticfiles"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+STATICFILES_DIRS=(os.path.join(BASE_DIR,'static'),)
+django_heroku.settings(locals())
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'dxojb4izx',
+    'API_KEY': '143382612328164',
+    'API_SECRET': '4g0_YHC242Uy1LU69CtIlfxKH2s'
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'

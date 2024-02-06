@@ -160,9 +160,9 @@ if os.getcwd() == '/app':
     #allow all host headers.
     ALLOWED_HOSTS =['*']
     #STATIC ASST CONFIGURATION
-    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
     STATIC_URL='/static/'
-    STATIC_ROOT=os.path.join(BASE_DIR,'staticfiles')
+    STATIC_ROOT='staticfiles'
     STATICFILES_DIRS = (
         os.path.join(BASE_DIR,'static'),
         )

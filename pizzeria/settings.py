@@ -15,7 +15,7 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
+import os
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
@@ -149,7 +149,7 @@ BOOTSTRAP3={
 import django_heroku
 import dj_database_url
 
-import os
+
 #heroku settings
 if os.getcwd() == '/app':
     import dj_database_url
@@ -162,9 +162,6 @@ if os.getcwd() == '/app':
     ALLOWED_HOSTS =['*']
     #STATIC ASST CONFIGURATION
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-    STATIC_URL='/static/'
-    STATIC_ROOT='staticfiles'
-    STATICFILES_DIRS = (
-        os.path.join(BASE_DIR,'static'),
-        )
+    STATIC_ROOT=os.path.join(BASE_DIR,'staticfiles')
+    STATICFILES_DIRS=(OS.PATH.JOIN(BASE_DIR,'static'),)
     django_heroku.settings(locals())

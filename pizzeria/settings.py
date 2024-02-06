@@ -141,6 +141,7 @@ BOOTSTRAP3={
     'include_jquerry':True,
 
 }
+import django_heroku
 import os
 #heroku settings
 if os.getcwd() == '/app':
@@ -155,7 +156,8 @@ if os.getcwd() == '/app':
     #STATIC ASST CONFIGURATION
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     STATIC_URL='/static/'
-    STATIC_ROOT='staticfiles'
+    STATIC_ROOT=os.path.join(BASE_DIR,'staticfiles')
     STATICFILES_DIRS = (
         os.path.join(BASE_DIR,'static'),
         )
+    django_heroku.settings(locals())
